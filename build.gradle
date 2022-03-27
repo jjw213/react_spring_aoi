@@ -10,18 +10,25 @@ sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.4.5'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+//    implementation fileTree(dir:'/src/main/webapp',include:['*.jar'])
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
-def frontendDir = "$projectDir/frontend"
+def frontendDir = "$projectDir/frontend/react_spring_frontend"
 
 sourceSets {
     main {

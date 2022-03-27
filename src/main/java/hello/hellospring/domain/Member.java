@@ -1,8 +1,10 @@
 package hello.hellospring.domain;
 
 public class Member {
-    private Long id;
+    private int id;
     private String name;
+    private String password;
+
 
     public String getName() {
         return name;
@@ -12,11 +14,19 @@ public class Member {
         this.name = name;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

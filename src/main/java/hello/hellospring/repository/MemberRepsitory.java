@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface MemberRepsitory {
     Member save(Member member);
 
-    Optional<Member> findById(Long id);
+    Optional<Member> findById(Integer id);
 
     Optional<Member> findByName(String name);
 

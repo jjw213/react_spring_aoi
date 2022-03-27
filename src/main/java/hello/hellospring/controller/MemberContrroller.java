@@ -24,6 +24,7 @@ public class MemberContrroller {
     public String create(MemberForm form) {
         Member member = new Member();
         member.setName(form.getName());
+        member.setPassword(form.getPassword());
         System.out.println("member = " + member.getName());
         memberService.join(member);
         return "redirect:/";
