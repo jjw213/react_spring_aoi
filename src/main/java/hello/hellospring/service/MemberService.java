@@ -1,10 +1,8 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
-import hello.hellospring.repository.JdbcMemberRepository;
 import hello.hellospring.repository.MemberRepsitory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
@@ -18,19 +16,39 @@ public class MemberService {
         this.memberRepsitory = memberRepsitory;
     }
 
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public Integer join(Member member) {
         memberRepsitory.findByName(member.getName())
                 .ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 회원이름!");
+                    throw new IllegalStateException("already exist name!");
                 });
         System.out.println(passwordEncoder.encode(member.getPassword()));
         String encodedPassword = passwordEncoder.encode(member.getPassword());
 
         member.setPassword(encodedPassword);
         memberRepsitory.save(member);
+
         return member.getId();
+    }
+
+    public boolean compareMembers(Member member) {
+        Optional<Member> loginUser = memberRepsitory.findByName(member.getName());
+//        System.out.println(member.getName());
+//        System.out.println(Optional.of(memberRepsitory.findByName(member.getName())));
+//        System.out.println(Optional.of(loginUser.get()));
+//        System.out.println(loginUser.get().getPassword());
+        if (loginUser.isEmpty()) {
+            System.out.println("doesn't exist member of the name.");
+            return false;
+        }
+        if (!passwordEncoder.matches(member.getPassword(), loginUser.get().getPassword())) {
+            System.out.println("no match password.");
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -44,5 +62,9 @@ public class MemberService {
 
     public Optional<Member> findOne(Integer memberId) {
         return memberRepsitory.findById(memberId);
+    }
+
+    public Optional<Member> findOne(String memberName) {
+        return memberRepsitory.findByName(memberName);
     }
 }

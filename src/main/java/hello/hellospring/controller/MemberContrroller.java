@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MemberContrroller {
@@ -38,4 +39,30 @@ public class MemberContrroller {
 //        return "members/memberList";
         return members;
     }
+
+    @PostMapping("/members/memberLogin")
+//    @GetMapping("/members/memberLogin")
+    @ResponseBody
+    public Optional<Member> login(MemberForm form) {
+        Member member = new Member();
+        member.setName(form.getName());
+        member.setPassword(form.getPassword());
+//        System.out.println(form.getName());
+//        System.out.println(member.getName());
+
+        if (memberService.compareMembers(member)) {
+            Optional<Member> theMember = memberService.findOne(member.getName());
+            System.out.println("login success");
+            return theMember;
+        } else
+            return null;
+    }
+//    public String log(MemberForm form) {
+//        Member member = new Member();
+//        member.setName(form.getName());
+//        member.setPassword(form.getPassword());
+//        System.out.println("member = " + member.getName());
+//        memberService.join(member);
+//        return "/";
+//    }
 }
