@@ -22,13 +22,14 @@ public class MemberContrroller {
     }
 
     @PostMapping("/members/new")
-    public String create(MemberForm form) {
+    @ResponseBody
+    public Member create(MemberForm form) {
         Member member = new Member();
         member.setName(form.getName());
         member.setPassword(form.getPassword());
         System.out.println("member = " + member.getName());
         memberService.join(member);
-        return "redirect:/";
+        return member;
     }
 
     @GetMapping("/members/memberList")
@@ -56,6 +57,14 @@ public class MemberContrroller {
             return theMember;
         } else
             return null;
+    }
+
+    @GetMapping("/members/memberLogout")
+    @ResponseBody
+    public Member logout(){
+        Member member = new Member();
+        member = null;
+        return member;
     }
 //    public String log(MemberForm form) {
 //        Member member = new Member();
