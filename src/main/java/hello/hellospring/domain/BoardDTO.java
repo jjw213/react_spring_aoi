@@ -9,7 +9,7 @@ public class BoardDTO {
     /**
      * 번호 (PK)
      */
-    private Long idx;
+    private Integer idx;
 
     /**
      * 제목
@@ -60,11 +60,11 @@ public class BoardDTO {
      */
     private LocalDateTime deleteTime;
 
-    public Long getIdx() {
+    public Integer getIdx() {
         return idx;
     }
 
-    public void setIdx(Long idx) {
+    public void setIdx(Integer idx) {
         this.idx = idx;
     }
 
