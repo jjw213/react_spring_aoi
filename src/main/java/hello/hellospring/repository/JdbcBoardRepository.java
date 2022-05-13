@@ -92,6 +92,7 @@ public class JdbcBoardRepository implements BoardRepository {
                 boardDTO.setIdx(rs.getInt("idx"));
                 boardDTO.setTitle(rs.getString("title"));
                 boardDTO.setContent(rs.getString("content"));
+                boardDTO.setWriter(rs.getString("writer"));
                 boardDTOs.add(boardDTO);
             }
             return boardDTOs;
