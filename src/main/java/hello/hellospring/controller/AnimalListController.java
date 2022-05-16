@@ -5,6 +5,7 @@ import hello.hellospring.domain.Animal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -22,11 +23,12 @@ import java.util.List;
 
 @Controller
 public class AnimalListController  {
-    @GetMapping("/animal/animalList")
+    @PostMapping("/animal/animalList")
     @ResponseBody
-    public List<Animal> alist(Model model) {
+    public List<Animal> alist(AnimalForm form) {
+        System.out.println(form.getNumOfRows());
         List<Animal> result = new ArrayList<>();
-        String file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20140301&endde=20220430&pageNo=1&numOfRows=10&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
+        String file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20140301&endde=20220430&pageNo=1&numOfRows="+form.getNumOfRows()+"&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = null;
         try {
@@ -63,6 +65,7 @@ public class AnimalListController  {
                 animal.setWeight(eElement.getElementsByTagName("weight").item(0).getTextContent());
                 animal.setFilename(eElement.getElementsByTagName("filename").item(0).getTextContent());
                 animal.setSexCd(eElement.getElementsByTagName("sexCd").item(0).getTextContent());
+                animal.setCareTel(eElement.getElementsByTagName("careTel").item(0).getTextContent());
 //                System.out.println("protected Num : " + eElement.getElementsByTagName("desertionNo").item(0).getTextContent());
 //                System.out.println("variety : " + eElement.getElementsByTagName("kindCd").item(0).getTextContent());
 //                System.out.println("care Address : " + eElement.getElementsByTagName("careAddr").item(0).getTextContent());
