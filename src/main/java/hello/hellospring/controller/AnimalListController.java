@@ -2,6 +2,7 @@ package hello.hellospring.controller;
 
 
 import hello.hellospring.domain.Animal;
+import hello.hellospring.domain.AnimalCount;
 import hello.hellospring.service.AnimalService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,8 +71,8 @@ public class AnimalListController  {
 
     @PostMapping("/animal/countList")
     @ResponseBody
-    public int[] countPet(AnimalForm form){
-
+    public List<AnimalCount> countPet(AnimalForm form){
+        List<AnimalCount> result = new ArrayList<>();
         String file ="";
         if(form.getKindcd().equals("개")) {
             file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=417000&pageNo=1&numOfRows="
@@ -104,7 +105,7 @@ public class AnimalListController  {
         System.out.println("Root Element :" + document.getDocumentElement().getNodeName());
         NodeList nList = document.getElementsByTagName("item");
         System.out.println("----------------------------");
-        int[] result = AnimalService.countAnimals(nList);
+        result = AnimalService.countAnimals(nList);
         return result;
     }
 }
