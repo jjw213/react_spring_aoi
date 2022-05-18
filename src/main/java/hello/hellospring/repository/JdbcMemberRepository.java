@@ -18,7 +18,7 @@ public class JdbcMemberRepository implements MemberRepsitory {
 
     @Override
     public Member save(Member member) {
-        String sql = "insert into member2 values(mem_seq.nextval,?,?)";
+        String sql = "insert into member2 values(mem_seq.nextval,?,?,?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -28,6 +28,7 @@ public class JdbcMemberRepository implements MemberRepsitory {
                     Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, member.getName());
             pstmt.setString(2, member.getPassword());
+            pstmt.setLong(3,member.getKakao_id());
             pstmt.executeUpdate();
 //            rs = pstmt.getGeneratedKeys();
 //            if (rs.next()) {

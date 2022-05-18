@@ -27,6 +27,7 @@ public class MemberContrroller {
         Member member = new Member();
         member.setName(form.getName());
         member.setPassword(form.getPassword());
+        member.setKakao_id(form.getKakao_id());
         System.out.println("member = " + member.getName());
         memberService.join(member);
         return member;
