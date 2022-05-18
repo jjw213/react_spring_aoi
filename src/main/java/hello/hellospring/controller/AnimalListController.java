@@ -70,8 +70,8 @@ public class AnimalListController  {
 
     @PostMapping("/animal/countList")
     @ResponseBody
-    public List<Animal> countPet(AnimalForm form){
-        List<Animal> result = new ArrayList<>();
+    public int[] countPet(AnimalForm form){
+
         String file ="";
         if(form.getKindcd().equals("개")) {
             file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=417000&pageNo=1&numOfRows="
@@ -104,7 +104,7 @@ public class AnimalListController  {
         System.out.println("Root Element :" + document.getDocumentElement().getNodeName());
         NodeList nList = document.getElementsByTagName("item");
         System.out.println("----------------------------");
-        result = AnimalService.allAnimals(nList);
+        int[] result = AnimalService.countAnimals(nList);
         return result;
     }
 }
