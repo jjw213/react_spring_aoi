@@ -2,7 +2,6 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Animal;
 import hello.hellospring.domain.AnimalCount;
-import hello.hellospring.domain.Member;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -21,12 +20,15 @@ public class AnimalService {
                 // 동물하나
                 Animal animal = new Animal();
                 Element eElement = (Element) nNode;
-                System.out.println("전체 리스트 :: "+eElement.getElementsByTagName("kindCd").item(0).getTextContent());
+                System.out.println("전체 리스트 :: " + eElement.getElementsByTagName("kindCd").item(0).getTextContent());
                 animal.setDesertionNo(Double.parseDouble(eElement.getElementsByTagName("desertionNo").item(0).getTextContent()));
                 animal.setKindCd(eElement.getElementsByTagName("kindCd").item(0).getTextContent());
                 animal.setAge(eElement.getElementsByTagName("age").item(0).getTextContent());
                 animal.setSpecialMark(eElement.getElementsByTagName("specialMark").item(0).getTextContent());
-                animal.setProcessState(eElement.getElementsByTagName("processState").item(0).getTextContent());
+                String processState = eElement.getElementsByTagName("processState").item(0).getTextContent();
+                String[] arr = processState.split("\\(");
+                animal.setProcessState(arr[0]);
+
                 animal.setCareAddr(eElement.getElementsByTagName("careAddr").item(0).getTextContent());
                 animal.setCareNm(eElement.getElementsByTagName("careNm").item(0).getTextContent());
                 animal.setWeight(eElement.getElementsByTagName("weight").item(0).getTextContent());
@@ -44,6 +46,7 @@ public class AnimalService {
         }
         return result;
     }
+
     public static List<AnimalCount> countAnimals(NodeList nList) {
 
         int[] count = new int[10];
@@ -54,56 +57,56 @@ public class AnimalService {
                 // 동물하나
 //                AnimalCount animal = new AnimalCount();
                 Element eElement = (Element) nNode;
-                System.out.println("전체 리스트 :: "+eElement.getElementsByTagName("kindCd").item(0).getTextContent());
+                System.out.println("전체 리스트 :: " + eElement.getElementsByTagName("kindCd").item(0).getTextContent());
                 String careAddr = eElement.getElementsByTagName("careAddr").item(0).getTextContent();
                 String[] arr = careAddr.split(" ");
-                switch (arr[0]){
+                switch (arr[0]) {
                     case "강원도":
-                        count[0]+=1;
+                        count[0] += 1;
                         break;
                     case "경기도":
-                        count[1]+=1;
+                        count[1] += 1;
                         break;
                     case "경상북도":
                     case "대구광역시":
-                        count[2]+=1;
+                        count[2] += 1;
                         break;
                     case "경상남도":
                     case "부산광역시":
                     case "울산광역시":
-                        count[3]+=1;
+                        count[3] += 1;
                         break;
                     case "광주광역시":
                     case "전라남도":
-                        count[4]+=1;
+                        count[4] += 1;
                         break;
                     case "전라북도":
-                        count[5]+=1;
+                        count[5] += 1;
                         break;
                     case "대전광역시":
                     case "충청남도":
                     case "세종특별자치시":
-                        count[6]+=1;
+                        count[6] += 1;
                         break;
                     case "충청북도":
-                        count[7]+=1;
+                        count[7] += 1;
                         break;
                     case "서울특별시":
                     case "인천광역시":
-                        count[8]+=1;
+                        count[8] += 1;
                         break;
                     case "제주특별자치도":
-                        count[9]+=1;
+                        count[9] += 1;
                         break;
                 }
             }
         }
-        String[] place =new String[]{"강원도", "경기도","경상남도","경상북도","서울&인천",
-                "전라남도","전라북도","제주특별자치도","충청남도","충청북도"};
+        String[] place = new String[]{"강원도", "경기도", "경상남도", "경상북도", "서울&인천",
+                "전라남도", "전라북도", "제주특별자치도", "충청남도", "충청북도"};
         List<AnimalCount> counts = new ArrayList<>();
 
 
-        for(int i =0 ; i<10;i++) {
+        for (int i = 0; i < 10; i++) {
             AnimalCount animal = new AnimalCount();
             animal.setId(place[i]);
             animal.setValue(count[i]);

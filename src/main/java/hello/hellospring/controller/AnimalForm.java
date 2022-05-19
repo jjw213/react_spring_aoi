@@ -1,7 +1,7 @@
 package hello.hellospring.controller;
 
 public class AnimalForm {
-    private String numOfRows;
+    private int numOfRows;
     private String kindcd;
     private String upr_cd;
 
@@ -21,11 +21,11 @@ public class AnimalForm {
         this.kindcd = kindcd;
     }
 
-    public String getNumOfRows() {
+    public int getNumOfRows() {
         return numOfRows;
     }
 
-    public void setNumOfRows(String numOfRows) {
+    public void setNumOfRows(int numOfRows) {
         this.numOfRows = numOfRows;
     }
 }
