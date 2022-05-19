@@ -46,7 +46,7 @@ public class AnimalService {
     }
     public static List<AnimalCount> countAnimals(NodeList nList) {
 
-        int[] count = new int[17];
+        int[] count = new int[10];
         for (int temp = 0; temp < nList.getLength(); temp++) {
             Node nNode = nList.item(temp);
             System.out.println("\nCurrent Element :" + nNode.getNodeName());
@@ -64,61 +64,46 @@ public class AnimalService {
                     case "경기도":
                         count[1]+=1;
                         break;
-                    case "경상남도":
+                    case "경상북도":
+                    case "대구광역시":
                         count[2]+=1;
                         break;
-                    case "경상북도":
+                    case "경상남도":
+                    case "부산광역시":
+                    case "울산광역시":
                         count[3]+=1;
                         break;
                     case "광주광역시":
+                    case "전라남도":
                         count[4]+=1;
                         break;
-                    case "대구광역시":
+                    case "전라북도":
                         count[5]+=1;
                         break;
                     case "대전광역시":
+                    case "충청남도":
+                    case "세종특별자치시":
                         count[6]+=1;
                         break;
-                    case "부산광역시":
+                    case "충청북도":
                         count[7]+=1;
                         break;
                     case "서울특별시":
+                    case "인천광역시":
                         count[8]+=1;
                         break;
-                    case "세종특별자치시":
-                        count[9]+=1;
-                        break;
-                    case "울산광역시":
-                        count[10]+=1;
-                        break;
-                    case "인천광역시":
-                        count[11]+=1;
-                        break;
-                    case "전라남도":
-                        count[12]+=1;
-                        break;
-                    case "전라북도":
-                        count[13]+=1;
-                        break;
                     case "제주특별자치도":
-                        count[14]+=1;
-                        break;
-                    case "충청남도":
-                        count[15]+=1;
-                        break;
-                    case "충청북도":
-                        count[16]+=1;
+                        count[9]+=1;
                         break;
                 }
             }
         }
-        String[] place =new String[]{"강원도", "경기도","경상남도","경상북도","광주광역시","대구광역시",
-                "대전광역시","부산광역시","서울특별시", "세종특별자치시","울산광역시",
-                "인천광역시","전라남도","전라북도","제주특별자치도","충청남도","충청북도"};
+        String[] place =new String[]{"강원도", "경기도","경상남도","경상북도","서울&인천",
+                "전라남도","전라북도","제주특별자치도","충청남도","충청북도"};
         List<AnimalCount> counts = new ArrayList<>();
 
 
-        for(int i =0 ; i<17;i++) {
+        for(int i =0 ; i<10;i++) {
             AnimalCount animal = new AnimalCount();
             animal.setId(place[i]);
             animal.setValue(count[i]);
