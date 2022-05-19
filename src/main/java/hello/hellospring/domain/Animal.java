@@ -11,6 +11,15 @@ public class Animal {
     private String weight; // 몸무게
     private String filename;// 썸네일
     private String sexCd; //수컷m, 암컷f
+    private String popfile; // 사진
+
+    public String getPopfile() {
+        return popfile;
+    }
+
+    public void setPopfile(String popfile) {
+        this.popfile = popfile;
+    }
 
     public double getDesertionNo() {
         return desertionNo;
