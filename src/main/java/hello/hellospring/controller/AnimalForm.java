@@ -4,6 +4,15 @@ public class AnimalForm {
     private int numOfRows;
     private String kindcd;
     private String upr_cd;
+    private String specialMark;
+
+    public String getSpecialMark() {
+        return specialMark;
+    }
+
+    public void setSpecialMark(String specialMark) {
+        this.specialMark = specialMark;
+    }
 
     public String getUpr_cd() {
         return upr_cd;
