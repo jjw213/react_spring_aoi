@@ -127,6 +127,33 @@ public class JdbcMemberRepository implements MemberRepsitory {
         }
     }
 
+    @Override
+    public Optional<Member> findByKakao(long name) {
+        String sql = "select * from member2 where kakao_id = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setLong(1, name);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                Member member = new Member();
+                member.setId(rs.getInt("id"));
+                member.setName(rs.getString("name"));
+                member.setPassword(rs.getString("password"));
+                member.setKakao_id(rs.getLong("kakao_id"));
+                return Optional.of(member);
+            }
+            return Optional.empty();
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
     private Connection getConnection() {
         return DataSourceUtils.getConnection(dataSource);
     }

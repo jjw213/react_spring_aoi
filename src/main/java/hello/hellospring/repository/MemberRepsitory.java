@@ -12,5 +12,7 @@ public interface MemberRepsitory {
 
     Optional<Member> findByName(String name);
 
+    Optional<Member> findByKakao(long name);
+
     List<Member> findAll();
 }

@@ -31,6 +31,11 @@ public class MemoryMemberRepository implements MemberRepsitory {
     }
 
     @Override
+    public Optional<Member> findByKakao(long name) {
+        return Optional.empty();
+    }
+
+    @Override
     public List<Member> findAll() {
         return new ArrayList<>(store.values());
     }

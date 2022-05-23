@@ -51,12 +51,12 @@ public class AnimalService {
         List<Animal> result = new ArrayList<>();
         for (int temp = 0; temp < nList.getLength(); temp++) {
             Node nNode = nList.item(temp);
-            System.out.println("\nCurrent Element :" + nNode.getNodeName());
+//            System.out.println("\nCurrent Element :" + nNode.getNodeName());
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 // 동물하나
                 Animal animal = new Animal();
                 Element eElement = (Element) nNode;
-                System.out.println("전체 리스트 :: " + eElement.getElementsByTagName("kindCd").item(0).getTextContent());
+//                System.out.println("전체 리스트 :: " + eElement.getElementsByTagName("kindCd").item(0).getTextContent());
                 if(eElement.getElementsByTagName("specialMark").item(0).getTextContent().indexOf(specialMark)==-1){
                     continue;
                 }
@@ -91,12 +91,12 @@ public class AnimalService {
         int[] count = new int[10];
         for (int temp = 0; temp < nList.getLength(); temp++) {
             Node nNode = nList.item(temp);
-            System.out.println("\nCurrent Element :" + nNode.getNodeName());
+//            System.out.println("\nCurrent Element :" + nNode.getNodeName());
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 // 동물하나
 //                AnimalCount animal = new AnimalCount();
                 Element eElement = (Element) nNode;
-                System.out.println("전체 리스트 :: " + eElement.getElementsByTagName("kindCd").item(0).getTextContent());
+//                System.out.println("전체 리스트 :: " + eElement.getElementsByTagName("kindCd").item(0).getTextContent());
                 String careAddr = eElement.getElementsByTagName("careAddr").item(0).getTextContent();
                 String[] arr = careAddr.split(" ");
                 switch (arr[0]) {

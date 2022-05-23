@@ -47,7 +47,19 @@ public class MemberService {
             System.out.println("no match password.");
             return false;
         }
+        return true;
+    }
 
+    public boolean compareKakaoMembers(Member member) {
+        Optional<Member> loginUser = memberRepsitory.findByKakao(member.getKakao_id());
+//        System.out.println(member.getName());
+//        System.out.println(Optional.of(memberRepsitory.findByName(member.getName())));
+//        System.out.println(Optional.of(loginUser.get()));
+//        System.out.println(loginUser.get().getPassword());
+        if (loginUser.isEmpty()) {
+            System.out.println("doesn't exist member of the kakao_id.");
+            return false;
+        }
         return true;
     }
 
@@ -66,5 +78,8 @@ public class MemberService {
 
     public Optional<Member> findOne(String memberName) {
         return memberRepsitory.findByName(memberName);
+    }
+    public Optional<Member> findKakao(long kakaoName) {
+        return memberRepsitory.findByKakao(kakaoName);
     }
 }

@@ -59,7 +59,22 @@ public class MemberContrroller {
         } else
             return null;
     }
+    @PostMapping("/members/kakaoLogin")
+//    @GetMapping("/members/memberLogin")
+    @ResponseBody
+    public Optional<Member> kakaoLogin(MemberForm form) {
+        Member member = new Member();
+        member.setKakao_id(form.getKakao_id());
+        System.out.println("카카오 로그인 요청 : " +form.getKakao_id());
+//        System.out.println(member.getName());
 
+        if (memberService.compareKakaoMembers(member)) {
+            Optional<Member> theMember = memberService.findKakao(member.getKakao_id());
+            System.out.println("login success");
+            return theMember;
+        } else
+            return null;
+    }
     @GetMapping("/members/memberLogout")
     @ResponseBody
     public Member logout(){
