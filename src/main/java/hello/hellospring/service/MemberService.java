@@ -19,7 +19,7 @@ public class MemberService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public Integer join(Member member) {
+    public Member join(Member member) {
         memberRepsitory.findByName(member.getName())
                 .ifPresent(m -> {
                     throw new IllegalStateException("already exist name!");
@@ -28,9 +28,9 @@ public class MemberService {
         String encodedPassword = passwordEncoder.encode(member.getPassword());
 
         member.setPassword(encodedPassword);
-        memberRepsitory.save(member);
+        return memberRepsitory.save(member);
 
-        return member.getId();
+//        return member.getId();
     }
 
     public boolean compareMembers(Member member) {
@@ -81,5 +81,8 @@ public class MemberService {
     }
     public Optional<Member> findKakao(long kakaoName) {
         return memberRepsitory.findByKakao(kakaoName);
+    }
+    public boolean deleteMember(String memberName){
+        return memberRepsitory.deleteByName(memberName);
     }
 }

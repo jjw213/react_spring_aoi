@@ -15,4 +15,6 @@ public interface MemberRepsitory {
     Optional<Member> findByKakao(long name);
 
     List<Member> findAll();
+
+    boolean deleteByName(String memberName);
 }

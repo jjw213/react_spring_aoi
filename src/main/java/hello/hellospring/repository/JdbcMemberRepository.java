@@ -102,6 +102,25 @@ public class JdbcMemberRepository implements MemberRepsitory {
     }
 
     @Override
+    public boolean deleteByName(String memberName) {
+        String sql = "delete * from member2 where name = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, memberName);
+            pstmt.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
     public Optional<Member> findByName(String name) {
         String sql = "select * from member2 where name = ?";
         Connection conn = null;

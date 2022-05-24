@@ -39,4 +39,9 @@ public class MemoryMemberRepository implements MemberRepsitory {
     public List<Member> findAll() {
         return new ArrayList<>(store.values());
     }
+
+    @Override
+    public boolean deleteByName(String memberName) {
+        return true;
+    }
 }

@@ -29,8 +29,8 @@ public class MemberContrroller {
         member.setPassword(form.getPassword());
         member.setKakao_id(form.getKakao_id());
         System.out.println("member = " + member.getName());
-        memberService.join(member);
-        return member;
+        return memberService.join(member);
+//        return member;
     }
 
     @GetMapping("/members/memberList")
@@ -81,6 +81,25 @@ public class MemberContrroller {
         Member member = new Member();
         member = null;
         return member;
+    }
+
+    @PostMapping("/members/memberDelete")
+    @ResponseBody
+    public boolean delete(MemberForm form) {
+        Member member = new Member();
+        member.setName(form.getName());
+        member.setPassword(form.getPassword());
+//        System.out.println(form.getName());
+//        System.out.println(member.getName());
+
+        if (memberService.compareMembers(member)) {
+            Optional<Member> theMember = memberService.findOne(member.getName());
+            System.out.println("delete success");
+            return memberService.deleteMember(member.getName());
+
+//            return theMember;
+        } else
+            return false;
     }
 //    public String log(MemberForm form) {
 //        Member member = new Member();

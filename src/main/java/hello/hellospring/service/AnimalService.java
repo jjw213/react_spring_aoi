@@ -15,12 +15,12 @@ public class AnimalService {
         List<Animal> result = new ArrayList<>();
         for (int temp = 0; temp < nList.getLength(); temp++) {
             Node nNode = nList.item(temp);
-            System.out.println("\nCurrent Element :" + nNode.getNodeName());
+//            System.out.println("\nCurrent Element :" + nNode.getNodeName());
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 // 동물하나
                 Animal animal = new Animal();
                 Element eElement = (Element) nNode;
-                System.out.println("전체 리스트 :: " + eElement.getElementsByTagName("kindCd").item(0).getTextContent());
+//                System.out.println("전체 리스트 :: " + eElement.getElementsByTagName("kindCd").item(0).getTextContent());
                 animal.setDesertionNo(Double.parseDouble(eElement.getElementsByTagName("desertionNo").item(0).getTextContent()));
                 animal.setKindCd(eElement.getElementsByTagName("kindCd").item(0).getTextContent());
                 animal.setAge(eElement.getElementsByTagName("age").item(0).getTextContent());
