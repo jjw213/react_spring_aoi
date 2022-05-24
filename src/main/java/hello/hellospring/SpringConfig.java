@@ -1,11 +1,9 @@
 package hello.hellospring;
-import hello.hellospring.repository.BoardRepository;
-import hello.hellospring.repository.JdbcBoardRepository;
-import hello.hellospring.repository.JdbcMemberRepository;
+import hello.hellospring.repository.*;
 //import hello.hellospring.repository.JdbcTemplateMemberRepository;
-import hello.hellospring.repository.MemberRepsitory;
 //import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.service.BoardService;
+import hello.hellospring.service.DibsService;
 import hello.hellospring.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,5 +33,12 @@ public class SpringConfig {
     @Bean
     public BoardRepository boardRepository(){
         return new JdbcBoardRepository(dataSource);
+    }
+    @Bean
+    public DibsService dibsService(){return new DibsService(dibsRepository());}
+
+    @Bean
+    public DibsRepository dibsRepository(){
+        return new JdbcDibsRepository(dataSource);
     }
 }

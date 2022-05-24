@@ -1,5 +1,6 @@
 package hello.hellospring.controller;
 
+import hello.hellospring.domain.Animal;
 import hello.hellospring.domain.BoardDTO;
 import hello.hellospring.domain.Member;
 import hello.hellospring.service.BoardService;
@@ -41,4 +42,6 @@ public class BoardController {
 //        return "members/memberList";
         return boardDTO;
     }
+
+
 }
