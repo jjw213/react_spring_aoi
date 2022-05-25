@@ -1,7 +1,6 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Animal;
-import hello.hellospring.domain.Member;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
@@ -31,7 +30,7 @@ public class JdbcDibsRepository implements DibsRepository {
             pstmt.setString(3, animal.getCareNm());
             pstmt.setString(4, animal.getCareTel());
             pstmt.setString(5, animal.getKindCd());
-            pstmt.setDouble(6,animal.getDesertionNo());
+            pstmt.setDouble(6, animal.getDesertionNo());
             pstmt.setString(7, animal.getPopfile());
             pstmt.setString(8, animal.getSexCd());
             pstmt.setString(9, animal.getProcessState());
@@ -95,15 +94,15 @@ public class JdbcDibsRepository implements DibsRepository {
     }
 
     @Override
-    public boolean cancel(int id) {
-        String sql = "delete from dibs where id = ?";
+    public boolean cancel(double desertionNo) {
+        String sql = "delete from dibs where desertionNo = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id);
+            pstmt.setDouble(1, desertionNo);
             pstmt.executeUpdate();
             return true;
         } catch (Exception e) {

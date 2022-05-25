@@ -2,7 +2,6 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Animal;
 import hello.hellospring.repository.DibsRepository;
-import hello.hellospring.repository.MemberRepsitory;
 
 import java.util.List;
 
@@ -13,11 +12,15 @@ public class DibsService {
         this.dibsRepository = dibsRepository;
     }
 
-    public boolean dibs(Animal animal){
+    public boolean dibs(Animal animal) {
         return dibsRepository.save(animal);
     }
 
-    public List<Animal> findDibs(String name) {return dibsRepository.findAllByName(name);}
+    public List<Animal> findDibs(String name) {
+        return dibsRepository.findAllByName(name);
+    }
 
-    public boolean cancelDibs(int id){return dibsRepository.cancel(id);}
+    public boolean cancelDibs(double desertionNo) {
+        return dibsRepository.cancel(desertionNo);
+    }
 }

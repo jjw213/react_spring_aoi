@@ -9,5 +9,5 @@ public interface DibsRepository {
 
     List<Animal> findAllByName(String name);
 
-    boolean cancel(int id);
+    boolean cancel(double desertionNo);
 }

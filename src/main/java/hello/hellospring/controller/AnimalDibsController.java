@@ -1,21 +1,18 @@
 package hello.hellospring.controller;
 
 import hello.hellospring.domain.Animal;
-import hello.hellospring.service.AnimalService;
 import hello.hellospring.service.DibsService;
-import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class AnimalDibsController {
     private final DibsService dibsService;
+
     @Autowired
     public AnimalDibsController(DibsService dibsService) {
         this.dibsService = dibsService;
@@ -42,18 +39,19 @@ public class AnimalDibsController {
 
     @PostMapping("/animal/dibsList")
     @ResponseBody
-    public List<Animal> dibsList(DibsForm form){
-        System.out.println(form.getName());
+    public List<Animal> dibsList(DibsForm form) {
+//        System.out.println(form.getName());
         List<Animal> list = dibsService.findDibs(form.getName());
-        System.out.println("list 입니다."+list);
+//        System.out.println("list 입니다." + list);
         return list;
     }
 
     @PostMapping("/animal/dibsCancel")
     @ResponseBody
-    public boolean cancel(DibsForm form){
+    public boolean cancel(DibsForm form) {
+        System.out.println("desertion 숫자 입니다 !!" + form.getDesertionNo());
         Animal animal = new Animal();
-        animal.setId(form.getId());
-        return dibsService.cancelDibs(animal.getId());
+        animal.setDesertionNo(form.getDesertionNo());
+        return dibsService.cancelDibs(animal.getDesertionNo());
     }
 }
