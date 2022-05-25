@@ -23,7 +23,7 @@ public class AnimalDibsController {
 
     @PostMapping("/animal/animalDibs")
     @ResponseBody
-    public Animal dibs(DibsForm form) {
+    public boolean dibs(DibsForm form) {
         Animal animal = new Animal();
         animal.setSexCd(form.getSexCd());
         animal.setAge(form.getAge());
@@ -37,8 +37,7 @@ public class AnimalDibsController {
         animal.setSpecialMark(form.getSpecialMark());
         animal.setWeight(form.getWeight());
         animal.setName(form.getName());
-        dibsService.dibs(animal);
-        return animal;
+        return dibsService.dibs(animal);
     }
 
     @PostMapping("/animal/dibsList")
@@ -48,5 +47,13 @@ public class AnimalDibsController {
         List<Animal> list = dibsService.findDibs(form.getName());
         System.out.println("list 입니다."+list);
         return list;
+    }
+
+    @PostMapping("/animal/dibsCancel")
+    @ResponseBody
+    public boolean cancel(DibsForm form){
+        Animal animal = new Animal();
+        animal.setId(form.getId());
+        return dibsService.cancelDibs(animal.getId());
     }
 }

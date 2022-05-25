@@ -103,7 +103,7 @@ public class JdbcMemberRepository implements MemberRepsitory {
 
     @Override
     public boolean deleteByName(String memberName) {
-        String sql = "delete * from member2 where name = ?";
+        String sql = "delete from member2 where name = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;

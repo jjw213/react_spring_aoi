@@ -17,7 +17,7 @@ public class JdbcDibsRepository implements DibsRepository {
     }
 
     @Override
-    public Animal save(Animal animal) {
+    public boolean save(Animal animal) {
         String sql = "insert into dibs values(?,?,?,?,?,?,?,?,?,?,?,?,seq_dibs.nextval)";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -49,7 +49,7 @@ public class JdbcDibsRepository implements DibsRepository {
 //            } else {
 //                throw new SQLException("id 조회 실패");
 //            }
-            return animal;
+            return false;
         } catch (Exception e) {
             throw new IllegalStateException(e);
         } finally {
@@ -83,9 +83,29 @@ public class JdbcDibsRepository implements DibsRepository {
                 animal.setSpecialMark(rs.getString("specialMark"));
                 animal.setWeight(rs.getString("weight"));
                 animal.setName(rs.getString("name"));
+                animal.setId(rs.getInt("id"));
                 animals.add(animal);
             }
             return animals;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public boolean cancel(int id) {
+        String sql = "delete from dibs where id = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+            return true;
         } catch (Exception e) {
             throw new IllegalStateException(e);
         } finally {

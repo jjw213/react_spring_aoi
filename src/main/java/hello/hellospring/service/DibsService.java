@@ -13,9 +13,11 @@ public class DibsService {
         this.dibsRepository = dibsRepository;
     }
 
-    public Animal dibs(Animal animal){
+    public boolean dibs(Animal animal){
         return dibsRepository.save(animal);
     }
 
     public List<Animal> findDibs(String name) {return dibsRepository.findAllByName(name);}
+
+    public boolean cancelDibs(int id){return dibsRepository.cancel(id);}
 }

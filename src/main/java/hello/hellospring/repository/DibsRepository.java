@@ -5,7 +5,9 @@ import hello.hellospring.domain.Animal;
 import java.util.List;
 
 public interface DibsRepository {
-    Animal save(Animal animal);
+    boolean save(Animal animal);
 
     List<Animal> findAllByName(String name);
+
+    boolean cancel(int id);
 }
