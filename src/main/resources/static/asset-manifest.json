@@ -1,40 +1,7 @@
 {
   "files": {
-<<<<<<< HEAD
     "main.css": "/static/css/main.c4aa8acb.css",
     "main.js": "/static/js/main.218f257e.js",
-=======
-<<<<<<< HEAD
-    "main.css": "/static/css/main.0e061aa4.css",
-    "main.js": "/static/js/main.f8793e83.js",
-    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/index.html",
-    "main.0e061aa4.css.map": "/static/css/main.0e061aa4.css.map",
-    "main.f8793e83.js.map": "/static/js/main.f8793e83.js.map",
-    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.0e061aa4.css",
-    "static/js/main.f8793e83.js"
-=======
-<<<<<<< HEAD
-    "main.css": "/static/css/main.cba58c70.css",
-    "main.js": "/static/js/main.1c198c53.js",
-    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/index.html",
-    "main.cba58c70.css.map": "/static/css/main.cba58c70.css.map",
-    "main.1c198c53.js.map": "/static/js/main.1c198c53.js.map",
-    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.cba58c70.css",
-    "static/js/main.1c198c53.js"
-=======
-    "main.css": "/static/css/main.1db6a322.css",
-    "main.js": "/static/js/main.09dc36ec.js",
->>>>>>> e3dce8ee39a1df93ad748e2d4af983b815bc40ed
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/index.html",
@@ -43,14 +10,7 @@
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-<<<<<<< HEAD
     "static/css/main.c4aa8acb.css",
     "static/js/main.218f257e.js"
-=======
-    "static/css/main.1db6a322.css",
-    "static/js/main.09dc36ec.js"
->>>>>>> a8f0be4a16cbefa9bd7b1c6bde8362bf1ad838ef
->>>>>>> 81ca4532d92e9d564e24916ba872fcf2d3aeb959
->>>>>>> e3dce8ee39a1df93ad748e2d4af983b815bc40ed
   ]
 }

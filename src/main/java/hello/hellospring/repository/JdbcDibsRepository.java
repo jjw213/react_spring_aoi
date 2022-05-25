@@ -78,11 +78,11 @@ public class JdbcDibsRepository implements DibsRepository {
                 animal.setKindCd(rs.getString("kindCd"));
                 animal.setDesertionNo(rs.getLong("desertionNo"));
                 animal.setPopfile(rs.getString("popfile"));
-                animal.setSexCd(rs.getString("secCd"));
+                animal.setSexCd(rs.getString("sexCd"));
                 animal.setProcessState(rs.getString("processState"));
                 animal.setSpecialMark(rs.getString("specialMark"));
                 animal.setWeight(rs.getString("weight"));
-
+                animal.setName(rs.getString("name"));
                 animals.add(animal);
             }
             return animals;
