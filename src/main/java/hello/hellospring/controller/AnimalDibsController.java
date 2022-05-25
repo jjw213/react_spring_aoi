@@ -44,7 +44,7 @@ public class AnimalDibsController {
     @GetMapping("/animal/dibsList")
     @ResponseBody
     public List<Animal> dibsList(DibsForm form){
-        List<Animal> list = new ArrayList<>();
+        List<Animal> list = dibsService.findDibs(form.getName());
         return list;
     }
 }

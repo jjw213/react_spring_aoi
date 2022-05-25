@@ -17,5 +17,5 @@ public class DibsService {
         return dibsRepository.save(animal);
     }
 
-    public List<Animal> findDibs() {return dibsRepository.findAll();}
+    public List<Animal> findDibs(String name) {return dibsRepository.findAllByName(name);}
 }
