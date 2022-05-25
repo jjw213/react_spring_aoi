@@ -1,10 +1,13 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Animal;
+import hello.hellospring.domain.Member;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JdbcDibsRepository implements DibsRepository {
     private final DataSource dataSource;
@@ -53,6 +56,43 @@ public class JdbcDibsRepository implements DibsRepository {
             close(conn, pstmt, rs);
         }
     }
+
+    @Override
+    public List<Animal> findAllByName(String name) {
+        String sql = "select * from dibs where name=?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, name);
+            rs = pstmt.executeQuery();
+            List<Animal> animals = new ArrayList<>();
+            while (rs.next()) {
+                Animal animal = new Animal();
+                animal.setAge(rs.getString("age"));
+                animal.setCareAddr(rs.getString("careAddr"));
+                animal.setCareNm(rs.getString("careNm"));
+                animal.setCareTel(rs.getString("careTel"));
+                animal.setKindCd(rs.getString("kindCd"));
+                animal.setDesertionNo(rs.getLong("desertionNo"));
+                animal.setPopfile(rs.getString("popfile"));
+                animal.setSexCd(rs.getString("secCd"));
+                animal.setProcessState(rs.getString("processState"));
+                animal.setSpecialMark(rs.getString("specialMark"));
+                animal.setWeight(rs.getString("weight"));
+
+                animals.add(animal);
+            }
+            return animals;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
     private Connection getConnection() {
         return DataSourceUtils.getConnection(dataSource);
     }
