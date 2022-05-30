@@ -85,7 +85,7 @@ public class MemberContrroller {
 
     @PostMapping("/members/memberDelete")
     @ResponseBody
-    public boolean delete(MemberForm form) {
+    public Member delete(MemberForm form) {
         Member member = new Member();
         member.setName(form.getName());
         member.setPassword(form.getPassword());
@@ -95,11 +95,11 @@ public class MemberContrroller {
         if (memberService.compareMembers(member)) {
             Optional<Member> theMember = memberService.findOne(member.getName());
             System.out.println("delete success");
-            return memberService.deleteMember(member.getName());
-
-//            return theMember;
+            memberService.deleteMember(member.getName());
+            member = null;
+            return member;
         } else
-            return false;
+            return member;
     }
 //    public String log(MemberForm form) {
 //        Member member = new Member();
