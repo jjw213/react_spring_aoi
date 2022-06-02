@@ -32,18 +32,21 @@ public class AnimalListController  {
         List<Animal> result = new ArrayList<>();
         String file ="";
         if(form.getKindcd().equals("개")) {
-            file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=417000&upr_cd="
-                    +form.getUpr_cd()+"&pageNo=1&numOfRows="
+            file = new String("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=417000&upr_cd="
+                    +form.getUpr_cd()+ "&state="
+                    + form.getState() + "&pageNo=1&numOfRows="
                     + form.getNumOfRows() + "&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
         }
         else if(form.getKindcd().equals("고양이")){
-            file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=422400&upr_cd="
-                    +form.getUpr_cd()+"&pageNo=1&numOfRows="
+            file = new String("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=422400&upr_cd="
+                    +form.getUpr_cd()+"&state="
+                    + form.getState() + "&pageNo=1&numOfRows="
                     + form.getNumOfRows() + "&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
         }
         else{
-            file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=429900&upr_cd="
-                    +form.getUpr_cd()+"&pageNo=1&numOfRows="
+            file = new String("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=429900&upr_cd="
+                    +form.getUpr_cd()+"&state="
+                    + form.getState() + "&pageNo=1&numOfRows="
                     + form.getNumOfRows() + "&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
         }
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -76,18 +79,21 @@ public class AnimalListController  {
         List<Animal> result = new ArrayList<>();
         String file ="";
         if(form.getKindcd().equals("개")) {
-            file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=417000&upr_cd="
-                    +form.getUpr_cd()+"&pageNo=1&numOfRows="
+            file = new String("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=417000&upr_cd="
+                    +form.getUpr_cd()+"&state="
+                    + form.getState() +"&pageNo=1&numOfRows="
                     + form.getNumOfRows() + "&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
         }
         else if(form.getKindcd().equals("고양이")){
-            file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=422400&upr_cd="
-                    +form.getUpr_cd()+"&pageNo=1&numOfRows="
+            file = new String("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=422400&upr_cd="
+                    +form.getUpr_cd()+"&state="
+                    + form.getState() +"&pageNo=1&numOfRows="
                     + form.getNumOfRows() + "&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
         }
         else{
-            file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=429900&upr_cd="
-                    +form.getUpr_cd()+"&pageNo=1&numOfRows="
+            file = new String("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=429900&upr_cd="
+                    +form.getUpr_cd()+"&state="
+                    + form.getState() +"&pageNo=1&numOfRows="
                     + form.getNumOfRows() + "&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
         }
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -119,15 +125,15 @@ public class AnimalListController  {
         List<AnimalCount> result = new ArrayList<>();
         String file ="";
         if(form.getKindcd().equals("개")) {
-            file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20220401&endde=20220430&upkind=417000&pageNo=1&numOfRows="
+            file = new String("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20220401&endde=20220430&upkind=417000&pageNo=1&numOfRows="
                     + form.getNumOfRows() + "&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
         }
         else if(form.getKindcd().equals("고양이")){
-            file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20220401&endde=20220430&upkind=422400&pageNo=1&numOfRows="
+            file = new String("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20220401&endde=20220430&upkind=422400&pageNo=1&numOfRows="
                     + form.getNumOfRows() + "&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
         }
         else{
-            file = new String("http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20220401&endde=20220430&upkind=429900&pageNo=1&numOfRows="
+            file = new String("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20220401&endde=20220430&upkind=429900&pageNo=1&numOfRows="
                     + form.getNumOfRows() + "&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
         }
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

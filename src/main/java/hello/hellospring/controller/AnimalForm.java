@@ -5,6 +5,15 @@ public class AnimalForm {
     private String kindcd;
     private String upr_cd;
     private String specialMark;
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public String getSpecialMark() {
         return specialMark;

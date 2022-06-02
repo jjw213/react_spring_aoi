@@ -1,16 +1,35 @@
 {
   "files": {
-    "main.css": "/static/css/main.c4aa8acb.css",
-    "main.js": "/static/js/main.218f257e.js",
+    "main.css": "/static/css/main.a9767966.css",
+    "main.js": "/static/js/main.6a41569b.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/HiMelody-Regular.ttf": "/static/media/HiMelody-Regular.984636f1dce3ac1821f6.ttf",
+    "static/media/DoHyeon-Regular.ttf": "/static/media/DoHyeon-Regular.33a15385076163ccf1b8.ttf",
+    "static/media/image2.png": "/static/media/image2.447ebd5f683524e6e0ee.png",
+    "static/media/free-animated-icon-dog-7211975.gif": "/static/media/free-animated-icon-dog-7211975.13474131991513139ed6.gif",
+    "static/media/free-animated-icon-cat-7211991.gif": "/static/media/free-animated-icon-cat-7211991.b88d7fa35abe86f25852.gif",
+    "static/media/image1.png": "/static/media/image1.fee039852df3f10bf083.png",
+    "static/media/image3.png": "/static/media/image3.fc63ca63c58afbe741ec.png",
+    "static/media/dogAndcat.png": "/static/media/dogAndcat.3e595a59f07f099479b8.png",
+    "static/media/image4.png": "/static/media/image4.ea29ebb309e3f1792ae1.png",
+    "static/media/glass.png": "/static/media/glass.0aa66ee91568c4edbc0c.png",
+    "static/media/glass02.png": "/static/media/glass02.338adc7cf22ce2b860c6.png",
+    "static/media/etcIcon2.png": "/static/media/etcIcon2.b16516d021927f6e5739.png",
+    "static/media/etcIcon1.png": "/static/media/etcIcon1.3ceee28044114ca63915.png",
+    "static/media/neko.png": "/static/media/neko.82b63764d98cf99a693a.png",
+    "static/media/dogIcon2.png": "/static/media/dogIcon2.5c440eb51ede6f809619.png",
+    "static/media/catIcon2.png": "/static/media/catIcon2.f0df47599df071da0a86.png",
+    "static/media/catIcon1.png": "/static/media/catIcon1.bb45d703a5ede53d8242.png",
+    "static/media/dogIcon1.png": "/static/media/dogIcon1.d37af5985148446df3d3.png",
+    "static/media/corgi.png": "/static/media/corgi.4be6f203690860195f73.png",
     "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/index.html",
-    "main.c4aa8acb.css.map": "/static/css/main.c4aa8acb.css.map",
-    "main.218f257e.js.map": "/static/js/main.218f257e.js.map",
+    "main.a9767966.css.map": "/static/css/main.a9767966.css.map",
+    "main.6a41569b.js.map": "/static/js/main.6a41569b.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c4aa8acb.css",
-    "static/js/main.218f257e.js"
+    "static/css/main.a9767966.css",
+    "static/js/main.6a41569b.js"
   ]
 }
