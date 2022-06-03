@@ -1,5 +1,6 @@
 package hello.hellospring.repository;
 
+import hello.hellospring.domain.Board2DTO;
 import hello.hellospring.domain.BoardDTO;
 import hello.hellospring.domain.Member;
 import org.springframework.jdbc.datasource.DataSourceUtils;
@@ -19,7 +20,7 @@ public class JdbcBoardRepository implements BoardRepository {
 
     @Override
     public BoardDTO save(BoardDTO boardDTO) {
-        String sql = "insert into board values(board_seq.nextval,?,?,?)";
+        String sql = "insert into board2 values(board2_seq.nextval,?,?,sysdate,0,?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -31,16 +32,7 @@ public class JdbcBoardRepository implements BoardRepository {
             pstmt.setString(2, boardDTO.getContent());
             pstmt.setString(3, boardDTO.getWriter());
             pstmt.executeUpdate();
-//            rs = pstmt.getGeneratedKeys();
-//            if (rs.next()) {
-////                System.out.println(rs.getString(1));
-////                System.out.println(rs.getString(2));
-//                System.out.println(member.getId());
-////                System.out.println(rs.getInt(2));
-//                member.setId(rs.getInt(1));
-//            } else {
-//                throw new SQLException("id 조회 실패");
-//            }
+
             return boardDTO;
         } catch (Exception e) {
             throw new IllegalStateException(e);
@@ -96,6 +88,69 @@ public class JdbcBoardRepository implements BoardRepository {
                 boardDTOs.add(boardDTO);
             }
             return boardDTOs;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public List<Board2DTO> show2() {
+        String sql = "select * from board2";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            List<Board2DTO> board2DTOs = new ArrayList<>();
+            while (rs.next()) {
+                Board2DTO board2DTO = new Board2DTO();
+                board2DTO.setNo(rs.getInt("no"));
+                board2DTO.setTitle(rs.getString("title"));
+                board2DTO.setContent(rs.getString("content"));
+                board2DTO.setCreateDate(rs.getDate("createDate"));
+                board2DTO.setReadCount(rs.getInt("readCount"));
+                board2DTOs.add(board2DTO);
+            }
+            return board2DTOs;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public Board2DTO findByNo(Integer no) {
+        String sql = "select * from board2 where no = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setLong(1, no);
+            rs = pstmt.executeQuery();
+            // 조회수 증가 부분
+            sql=" UPDATE BOARD2 set readCount = NVL(readCount, 0) + 1 where no=?";
+            pstmt = conn.prepareStatement(sql,
+                    Statement.RETURN_GENERATED_KEYS);
+            pstmt.setLong(1, no);
+            pstmt.executeUpdate();
+            if (rs.next()) {
+                Board2DTO board2DTO = new Board2DTO();
+                board2DTO.setNo(rs.getInt("no"));
+                board2DTO.setTitle(rs.getString("title"));
+                board2DTO.setContent(rs.getString("content"));
+                board2DTO.setCreateDate(rs.getDate("createDate"));
+                board2DTO.setReadCount(rs.getInt("readCount"));
+                return board2DTO;
+            } else {
+                return null;
+            }
         } catch (Exception e) {
             throw new IllegalStateException(e);
         } finally {

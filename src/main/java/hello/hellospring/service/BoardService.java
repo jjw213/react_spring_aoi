@@ -1,5 +1,6 @@
 package hello.hellospring.service;
 
+import hello.hellospring.domain.Board2DTO;
 import hello.hellospring.domain.BoardDTO;
 import hello.hellospring.repository.BoardRepository;
 
@@ -22,7 +23,12 @@ public class BoardService {
     public List<BoardDTO> show() {
         return boardRepository.show();
     }
-
+    public List<Board2DTO> show2() {
+        return boardRepository.show2();
+    }
+    public Board2DTO findOne2(Integer no) {
+        return boardRepository.findByNo(no);
+    }
     public Optional<BoardDTO> findOne(Integer memberId) {
         return boardRepository.findById(memberId);
     }

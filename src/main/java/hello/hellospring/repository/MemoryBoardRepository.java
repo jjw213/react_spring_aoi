@@ -1,5 +1,6 @@
 package hello.hellospring.repository;
 
+import hello.hellospring.domain.Board2DTO;
 import hello.hellospring.domain.BoardDTO;
 import hello.hellospring.domain.Member;
 import org.springframework.stereotype.Repository;
@@ -36,4 +37,16 @@ public class MemoryBoardRepository implements BoardRepository {
     public List<BoardDTO> show() {
         return null;
     }
+
+    @Override
+    public List<Board2DTO> show2() {
+        return null;
+    }
+
+    @Override
+    public Board2DTO findByNo(Integer no) {
+        return null;
+    }
+
+
 }

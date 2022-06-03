@@ -1,5 +1,6 @@
 package hello.hellospring.repository;
 
+import hello.hellospring.domain.Board2DTO;
 import hello.hellospring.domain.BoardDTO;
 
 import java.util.List;
@@ -13,4 +14,8 @@ public interface BoardRepository {
     Optional<BoardDTO> findByName(String title);
 
     List<BoardDTO> show();
+
+    List<Board2DTO> show2();
+
+    Board2DTO findByNo(Integer no);
 }

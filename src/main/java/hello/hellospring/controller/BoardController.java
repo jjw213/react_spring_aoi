@@ -1,6 +1,7 @@
 package hello.hellospring.controller;
 
 import hello.hellospring.domain.Animal;
+import hello.hellospring.domain.Board2DTO;
 import hello.hellospring.domain.BoardDTO;
 import hello.hellospring.domain.Member;
 import hello.hellospring.service.BoardService;
@@ -42,6 +43,20 @@ public class BoardController {
 //        return "members/memberList";
         return boardDTO;
     }
-
-
+    @GetMapping("/board2/boardList")
+    @ResponseBody
+    public List<Board2DTO> list2(Model model) {
+        List< Board2DTO> board2DTO = boardService.show2();
+        return board2DTO;
+    }
+    @PostMapping("/board2/boardOne")
+    @ResponseBody
+    public Board2DTO findByNo(Board2Form form) {
+        Board2DTO board2DTO = new Board2DTO();
+        board2DTO.setNo(form.getNo());
+//        board2DTO.setReadCount();
+        board2DTO=boardService.findOne2(board2DTO.getNo());
+        System.out.println(board2DTO.getNo());
+        return board2DTO;
+    }
 }
