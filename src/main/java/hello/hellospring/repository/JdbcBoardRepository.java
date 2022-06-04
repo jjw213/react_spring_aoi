@@ -113,6 +113,7 @@ public class JdbcBoardRepository implements BoardRepository {
                 board2DTO.setContent(rs.getString("content"));
                 board2DTO.setCreateDate(rs.getDate("createDate"));
                 board2DTO.setReadCount(rs.getInt("readCount"));
+                board2DTO.setWriter(rs.getString("writer"));
                 board2DTOs.add(board2DTO);
             }
             return board2DTOs;
@@ -147,6 +148,7 @@ public class JdbcBoardRepository implements BoardRepository {
                 board2DTO.setContent(rs.getString("content"));
                 board2DTO.setCreateDate(rs.getDate("createDate"));
                 board2DTO.setReadCount(rs.getInt("readCount"));
+                board2DTO.setWriter(rs.getString("writer"));
                 return board2DTO;
             } else {
                 return null;

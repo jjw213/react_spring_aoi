@@ -25,6 +25,37 @@ import java.util.List;
 
 @Controller
 public class AnimalListController  {
+
+    @PostMapping("/animal/mainList")
+    @ResponseBody
+    public List<Animal> mainlist(AnimalForm form) {
+        List<Animal> result = new ArrayList<>();
+        String file ="";
+            file = new String("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20220401&endde=20220430&upr_cd="
+                    +form.getUpr_cd()+ "&state="
+                    + form.getState() + "&pageNo=1&numOfRows="
+                    + form.getNumOfRows() + "&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = null;
+        try {
+            db = dbf.newDocumentBuilder();
+        } catch (ParserConfigurationException ex) {
+            ex.printStackTrace();
+        }
+        Document document = null;
+        try {
+            document = db.parse(file);
+        } catch (SAXException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        document.getDocumentElement().normalize();
+        NodeList nList = document.getElementsByTagName("item");
+        result = AnimalService.allAnimals(nList);
+        return result;
+    }
+
     @PostMapping("/animal/animalList")
     @ResponseBody
     public List<Animal> alist(AnimalForm form) {
