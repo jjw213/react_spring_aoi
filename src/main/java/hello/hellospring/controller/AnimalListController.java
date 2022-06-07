@@ -124,7 +124,7 @@ public class AnimalListController  {
         else{
             file = new String("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20200301&endde=20220430&upkind=429900&upr_cd="
                     +form.getUpr_cd()+"&state="
-                    + form.getState() +"&pageNo=1&numOfRows="
+                    + form.getState() +"&pageNoaa=1&numOfRows="
                     + form.getNumOfRows() + "&ServiceKey=d7DXF5UusAcJ7jFQYs3HTZ4c%2FrU7kRtgZOq6EIVTNyL5VJ%2B6Lu9Wp0ge6uWOxn2XbPuKuB42fiGPe4U1bfmWtA%3D%3D");
         }
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

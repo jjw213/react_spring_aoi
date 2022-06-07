@@ -5,6 +5,7 @@ import hello.hellospring.repository.*;
 import hello.hellospring.service.BoardService;
 import hello.hellospring.service.DibsService;
 import hello.hellospring.service.MemberService;
+import hello.hellospring.service.ReplyService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
@@ -41,4 +42,10 @@ public class SpringConfig {
     public DibsRepository dibsRepository(){
         return new JdbcDibsRepository(dataSource);
     }
+
+    @Bean
+    public ReplyService replyService(){return new ReplyService(replyRepository());}
+
+    @Bean
+    public ReplyRepository replyRepository(){ return new JdbcReplyRepository(dataSource);}
 }
