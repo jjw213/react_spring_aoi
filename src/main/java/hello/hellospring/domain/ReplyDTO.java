@@ -1,8 +1,6 @@
 package hello.hellospring.domain;
 
 
-import java.sql.Date;
-
 public class ReplyDTO {
     private String content;
     private String writer;
@@ -10,6 +8,15 @@ public class ReplyDTO {
     private String responseTo;
     private String commentId;
     private String date;
+    private int exist;
+
+    public int getExist() {
+        return exist;
+    }
+
+    public void setExist(int exist) {
+        this.exist = exist;
+    }
 
     public String getContent() {
         return content;

@@ -1,7 +1,5 @@
 package hello.hellospring.repository;
 
-import hello.hellospring.domain.Board2DTO;
-import hello.hellospring.domain.BoardDTO;
 import hello.hellospring.domain.ReplyDTO;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
@@ -24,7 +22,7 @@ public class JdbcReplyRepository implements ReplyRepository {
 
     @Override
     public ReplyDTO save(ReplyDTO replyDTO) {
-        String sql = "insert into reply values(?,?,?,?,?,?)";
+        String sql = "insert into reply values(?,?,?,?,?,?,1)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -69,7 +67,7 @@ public class JdbcReplyRepository implements ReplyRepository {
                 replyDTO.setResponseTo(rs.getString("responseTo"));
                 replyDTO.setCommentId(rs.getString("commentId"));
                 replyDTO.setDate(rs.getString("created_at"));
-                System.out.println(replyDTO.toString());
+                replyDTO.setExist(rs.getInt("exist"));
                 replyDTOS.add(replyDTO);
             }
             return replyDTOS;
@@ -79,6 +77,7 @@ public class JdbcReplyRepository implements ReplyRepository {
             close(conn, pstmt, rs);
         }
     }
+
     private Connection getConnection() {
         return DataSourceUtils.getConnection(dataSource);
     }
