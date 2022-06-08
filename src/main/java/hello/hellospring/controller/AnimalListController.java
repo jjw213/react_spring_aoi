@@ -97,7 +97,6 @@ public class AnimalListController  {
         }
         document.getDocumentElement().normalize();
         NodeList nList = document.getElementsByTagName("item");
-        System.out.println("----------------------------");
         result = AnimalService.allAnimals(nList);
         return result;
     }
@@ -143,7 +142,6 @@ public class AnimalListController  {
         }
         document.getDocumentElement().normalize();
         NodeList nList = document.getElementsByTagName("item");
-        System.out.println("----------------------------");
         result = AnimalService.recommendAnimals(nList, form.getSpecialMark());
         return result;
     }
@@ -182,7 +180,6 @@ public class AnimalListController  {
         }
         document.getDocumentElement().normalize();
         NodeList nList = document.getElementsByTagName("item");
-        System.out.println("----------------------------");
         result = AnimalService.countAnimals(nList);
         return result;
     }

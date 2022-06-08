@@ -97,15 +97,14 @@ public class JdbcBoardRepository implements BoardRepository {
 
     @Override
     public List<Board2DTO> show2(Board2Form form) {
-        String sql = "select * from board2 where no between ? and ? order by no desc";
+        String sql = "select * from (select * from board2 order by no desc) where rownum <=? ";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, form.getPage());
-            pstmt.setInt(2, form.getPage()+10);
+            pstmt.setInt(1,form.getPage());
             rs = pstmt.executeQuery();
             List<Board2DTO> board2DTOs = new ArrayList<>();
             while (rs.next()) {
