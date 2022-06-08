@@ -1,5 +1,6 @@
 package hello.hellospring.service;
 
+import hello.hellospring.controller.Board2Form;
 import hello.hellospring.domain.Board2DTO;
 import hello.hellospring.domain.BoardDTO;
 import hello.hellospring.repository.BoardRepository;
@@ -23,8 +24,8 @@ public class BoardService {
     public List<BoardDTO> show() {
         return boardRepository.show();
     }
-    public List<Board2DTO> show2() {
-        return boardRepository.show2();
+    public List<Board2DTO> show2(Board2Form form) {
+        return boardRepository.show2(form);
     }
     public Board2DTO findOne2(Integer no) {
         return boardRepository.findByNo(no);

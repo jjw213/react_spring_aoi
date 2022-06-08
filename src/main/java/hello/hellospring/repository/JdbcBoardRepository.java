@@ -1,8 +1,8 @@
 package hello.hellospring.repository;
 
+import hello.hellospring.controller.Board2Form;
 import hello.hellospring.domain.Board2DTO;
 import hello.hellospring.domain.BoardDTO;
-import hello.hellospring.domain.Member;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
@@ -96,14 +96,16 @@ public class JdbcBoardRepository implements BoardRepository {
     }
 
     @Override
-    public List<Board2DTO> show2() {
-        String sql = "select * from board2 order by no desc";
+    public List<Board2DTO> show2(Board2Form form) {
+        String sql = "select * from board2 where no between ? and ? order by no desc";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, form.getPage());
+            pstmt.setInt(2, form.getPage()+10);
             rs = pstmt.executeQuery();
             List<Board2DTO> board2DTOs = new ArrayList<>();
             while (rs.next()) {

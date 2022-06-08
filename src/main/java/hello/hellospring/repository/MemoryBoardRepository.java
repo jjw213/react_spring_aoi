@@ -1,8 +1,8 @@
 package hello.hellospring.repository;
 
+import hello.hellospring.controller.Board2Form;
 import hello.hellospring.domain.Board2DTO;
 import hello.hellospring.domain.BoardDTO;
-import hello.hellospring.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -39,7 +39,7 @@ public class MemoryBoardRepository implements BoardRepository {
     }
 
     @Override
-    public List<Board2DTO> show2() {
+    public List<Board2DTO> show2(Board2Form form) {
         return null;
     }
 

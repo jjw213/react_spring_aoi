@@ -43,10 +43,10 @@ public class BoardController {
 //        return "members/memberList";
         return boardDTO;
     }
-    @GetMapping("/board2/boardList")
+    @PostMapping("/board2/boardList")
     @ResponseBody
-    public List<Board2DTO> list2(Model model) {
-        List< Board2DTO> board2DTO = boardService.show2();
+    public List<Board2DTO> list2(Board2Form form) {
+        List< Board2DTO> board2DTO = boardService.show2(form);
         return board2DTO;
     }
     @PostMapping("/board2/boardOne")
