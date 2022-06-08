@@ -96,7 +96,6 @@ public class AnimalListController  {
             ex.printStackTrace();
         }
         document.getDocumentElement().normalize();
-        System.out.println("Root Element :" + document.getDocumentElement().getNodeName());
         NodeList nList = document.getElementsByTagName("item");
         System.out.println("----------------------------");
         result = AnimalService.allAnimals(nList);
@@ -143,7 +142,6 @@ public class AnimalListController  {
             ex.printStackTrace();
         }
         document.getDocumentElement().normalize();
-        System.out.println("Root Element :" + document.getDocumentElement().getNodeName());
         NodeList nList = document.getElementsByTagName("item");
         System.out.println("----------------------------");
         result = AnimalService.recommendAnimals(nList, form.getSpecialMark());
@@ -183,7 +181,6 @@ public class AnimalListController  {
             ex.printStackTrace();
         }
         document.getDocumentElement().normalize();
-        System.out.println("Root Element :" + document.getDocumentElement().getNodeName());
         NodeList nList = document.getElementsByTagName("item");
         System.out.println("----------------------------");
         result = AnimalService.countAnimals(nList);

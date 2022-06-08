@@ -97,7 +97,7 @@ public class JdbcBoardRepository implements BoardRepository {
 
     @Override
     public List<Board2DTO> show2() {
-        String sql = "select * from board2";
+        String sql = "select * from board2 order by no desc";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;

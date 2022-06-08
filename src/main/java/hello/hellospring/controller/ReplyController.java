@@ -1,9 +1,11 @@
 package hello.hellospring.controller;
 
+import hello.hellospring.domain.Member;
 import hello.hellospring.domain.ReplyDTO;
 import hello.hellospring.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,5 +35,17 @@ public class ReplyController {
         List<ReplyDTO> list = replyService.show(replyDTO.getPostId());
 //        return "members/memberList";
         return list;
+    }
+
+    @PostMapping("/reply/remove")
+    @ResponseBody
+    public ReplyDTO remove(ReplyDTO replyForm){
+        return replyService.remove(replyForm.getCommentId());
+    }
+
+    @PostMapping("/reply/edit")
+    @ResponseBody
+    public ReplyDTO edit(ReplyDTO replyForm){
+        return replyService.edit(replyForm.getCommentId(), replyForm.getContent());
     }
 }
