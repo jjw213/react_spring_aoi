@@ -22,7 +22,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+//    compile('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+    compileOnly('org.projectlombok:lombok')
 //    implementation fileTree(dir:'/src/main/webapp',include:['*.jar'])
 }
 

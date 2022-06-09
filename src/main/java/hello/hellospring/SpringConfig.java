@@ -1,14 +1,15 @@
 package hello.hellospring;
+
 import hello.hellospring.repository.*;
-//import hello.hellospring.repository.JdbcTemplateMemberRepository;
-//import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.service.BoardService;
 import hello.hellospring.service.DibsService;
 import hello.hellospring.service.MemberService;
 import hello.hellospring.service.ReplyService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import javax.sql.DataSource;
+
 @Configuration
 public class SpringConfig {
     private final DataSource dataSource;
@@ -29,23 +30,33 @@ public class SpringConfig {
     }
 
     @Bean
-    public BoardService boardService(){ return new BoardService(boardRepository());}
+    public BoardService boardService() {
+        return new BoardService(boardRepository());
+    }
 
     @Bean
-    public BoardRepository boardRepository(){
+    public BoardRepository boardRepository() {
         return new JdbcBoardRepository(dataSource);
     }
-    @Bean
-    public DibsService dibsService(){return new DibsService(dibsRepository());}
 
     @Bean
-    public DibsRepository dibsRepository(){
+    public DibsService dibsService() {
+        return new DibsService(dibsRepository());
+    }
+
+    @Bean
+    public DibsRepository dibsRepository() {
         return new JdbcDibsRepository(dataSource);
     }
 
     @Bean
-    public ReplyService replyService(){return new ReplyService(replyRepository());}
+    public ReplyService replyService() {
+        return new ReplyService(replyRepository());
+    }
 
     @Bean
-    public ReplyRepository replyRepository(){ return new JdbcReplyRepository(dataSource);}
+    public ReplyRepository replyRepository() {
+        return new JdbcReplyRepository(dataSource);
+    }
+
 }

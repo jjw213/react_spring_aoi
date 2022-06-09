@@ -1,7 +1,9 @@
 package hello.hellospring.controller;
 
+import hello.hellospring.domain.MailDTO;
 import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
+import hello.hellospring.service.SendEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +17,13 @@ import java.util.Optional;
 @Controller
 public class MemberContrroller {
     private final MemberService memberService;
+    @Autowired
+    private final SendEmailService sendEmailService;
 
     @Autowired
-    public MemberContrroller(MemberService memberService) {
+    public MemberContrroller(MemberService memberService, SendEmailService sendEmailService) {
         this.memberService = memberService;
+        this.sendEmailService = sendEmailService;
     }
 
     @PostMapping("/members/new")
@@ -29,23 +34,25 @@ public class MemberContrroller {
         member.setPassword(form.getPassword());
         member.setKakao_id(form.getKakao_id());
         member.setEmail(form.getEmail());
-        try{
+        try {
             return memberService.join(member);
-        }catch (IllegalStateException e){
+        } catch (IllegalStateException e) {
             return null;
         }
     }
+
     @PostMapping("/members/check")
     @ResponseBody
     public Optional<Member> check(MemberForm form) {
         Member member = new Member();
         member.setName(form.getName());
-        try{
+        try {
             return memberService.findOneName(member.getName());
-        }catch (IllegalStateException e){
+        } catch (IllegalStateException e) {
             return null;
         }
     }
+
     @GetMapping("/members/memberList")
     @ResponseBody
     public List<Member> list(Model model) {
@@ -72,13 +79,14 @@ public class MemberContrroller {
         } else
             return null;
     }
+
     @PostMapping("/members/kakaoLogin")
 //    @GetMapping("/members/memberLogin")
     @ResponseBody
     public Optional<Member> kakaoLogin(MemberForm form) {
         Member member = new Member();
         member.setKakao_id(form.getKakao_id());
-        System.out.println("카카오 로그인 요청 : " +form.getKakao_id());
+        System.out.println("카카오 로그인 요청 : " + form.getKakao_id());
 //        System.out.println(member.getName());
 
         if (memberService.compareKakaoMembers(member)) {
@@ -88,9 +96,10 @@ public class MemberContrroller {
         } else
             return null;
     }
+
     @GetMapping("/members/memberLogout")
     @ResponseBody
-    public Member logout(){
+    public Member logout() {
         Member member = new Member();
         member = null;
         return member;
@@ -114,7 +123,8 @@ public class MemberContrroller {
         } else
             return member;
     }
-//    public String log(MemberForm form) {
+
+    //    public String log(MemberForm form) {
 //        Member member = new Member();
 //        member.setName(form.getName());
 //        member.setPassword(form.getPassword());
@@ -122,4 +132,12 @@ public class MemberContrroller {
 //        memberService.join(member);
 //        return "/";
 //    }
+    @PostMapping("/members/sendEmail")
+    public @ResponseBody
+    void sendEmail(String userEmail, String name) {
+        System.out.println("이메일 보냄 ->" + userEmail);
+        MailDTO dto = sendEmailService.createMailAndChangePassword(userEmail, name);
+        sendEmailService.mailSend(dto);
+
+    }
 }
