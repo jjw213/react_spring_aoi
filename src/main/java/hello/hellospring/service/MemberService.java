@@ -20,11 +20,10 @@ public class MemberService {
     private PasswordEncoder passwordEncoder;
 
     public Member join(Member member) {
-        memberRepsitory.findByName(member.getName())
+        memberRepsitory.findByEmail(member.getEmail())
                 .ifPresent(m -> {
-                    throw new IllegalStateException("already exist name!");
+                    throw new IllegalStateException("already exist email!");
                 });
-        System.out.println(passwordEncoder.encode(member.getPassword()));
         String encodedPassword = passwordEncoder.encode(member.getPassword());
 
         member.setPassword(encodedPassword);
@@ -34,13 +33,9 @@ public class MemberService {
     }
 
     public boolean compareMembers(Member member) {
-        Optional<Member> loginUser = memberRepsitory.findByName(member.getName());
-//        System.out.println(member.getName());
-//        System.out.println(Optional.of(memberRepsitory.findByName(member.getName())));
-//        System.out.println(Optional.of(loginUser.get()));
-//        System.out.println(loginUser.get().getPassword());
+        Optional<Member> loginUser = memberRepsitory.findByEmail(member.getEmail());
         if (loginUser.isEmpty()) {
-            System.out.println("doesn't exist member of the name.");
+            System.out.println("doesn't exist member of the email.");
             return false;
         }
         if (!passwordEncoder.matches(member.getPassword(), loginUser.get().getPassword())) {
@@ -76,7 +71,10 @@ public class MemberService {
         return memberRepsitory.findById(memberId);
     }
 
-    public Optional<Member> findOne(String memberName) {
+    public Optional<Member> findOne(String memberEmail) {
+        return memberRepsitory.findByEmail(memberEmail);
+    }
+    public Optional<Member> findOneName(String memberName) {
         return memberRepsitory.findByName(memberName);
     }
     public Optional<Member> findKakao(long kakaoName) {

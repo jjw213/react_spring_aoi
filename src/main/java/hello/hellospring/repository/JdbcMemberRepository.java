@@ -18,7 +18,7 @@ public class JdbcMemberRepository implements MemberRepsitory {
 
     @Override
     public Member save(Member member) {
-        String sql = "insert into member2 values(mem_seq.nextval,?,?,?)";
+        String sql = "insert into member2 values(mem_seq.nextval,?,?,?,?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -26,9 +26,10 @@ public class JdbcMemberRepository implements MemberRepsitory {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, member.getName());
+            pstmt.setString(1, member.getEmail());
             pstmt.setString(2, member.getPassword());
             pstmt.setLong(3,member.getKakao_id());
+            pstmt.setString(4, member.getName());
             pstmt.executeUpdate();
 //            rs = pstmt.getGeneratedKeys();
 //            if (rs.next()) {
@@ -58,6 +59,33 @@ public class JdbcMemberRepository implements MemberRepsitory {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setLong(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                Member member = new Member();
+                member.setId(rs.getInt("id"));
+                member.setName(rs.getString("name"));
+                member.setPassword(rs.getString("password"));
+                return Optional.of(member);
+            } else {
+                return Optional.empty();
+            }
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public Optional<Member> findByName(String memberName) {
+        String sql = "select * from member2 where name = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, memberName);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 Member member = new Member();
@@ -121,21 +149,22 @@ public class JdbcMemberRepository implements MemberRepsitory {
     }
 
     @Override
-    public Optional<Member> findByName(String name) {
-        String sql = "select * from member2 where name = ?";
+    public Optional<Member> findByEmail(String email) {
+        String sql = "select * from member2 where email = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, name);
+            pstmt.setString(1, email);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getInt("id"));
                 member.setName(rs.getString("name"));
                 member.setPassword(rs.getString("password"));
+                member.setEmail(rs.getString("email"));
                 return Optional.of(member);
             }
             return Optional.empty();

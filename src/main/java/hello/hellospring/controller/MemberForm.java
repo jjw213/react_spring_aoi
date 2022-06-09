@@ -2,6 +2,17 @@ package hello.hellospring.controller;
 
 public class MemberForm {
     private String name;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
+
     private String password;
     private long kakao_id;
 

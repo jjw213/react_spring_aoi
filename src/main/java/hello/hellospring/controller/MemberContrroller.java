@@ -28,11 +28,24 @@ public class MemberContrroller {
         member.setName(form.getName());
         member.setPassword(form.getPassword());
         member.setKakao_id(form.getKakao_id());
-        System.out.println("member = " + member.getName());
-        return memberService.join(member);
-//        return member;
+        member.setEmail(form.getEmail());
+        try{
+            return memberService.join(member);
+        }catch (IllegalStateException e){
+            return null;
+        }
     }
-
+    @PostMapping("/members/check")
+    @ResponseBody
+    public Optional<Member> check(MemberForm form) {
+        Member member = new Member();
+        member.setName(form.getName());
+        try{
+            return memberService.findOneName(member.getName());
+        }catch (IllegalStateException e){
+            return null;
+        }
+    }
     @GetMapping("/members/memberList")
     @ResponseBody
     public List<Member> list(Model model) {
@@ -47,13 +60,13 @@ public class MemberContrroller {
     @ResponseBody
     public Optional<Member> login(MemberForm form) {
         Member member = new Member();
-        member.setName(form.getName());
+        member.setEmail(form.getEmail());
         member.setPassword(form.getPassword());
 //        System.out.println(form.getName());
 //        System.out.println(member.getName());
 
         if (memberService.compareMembers(member)) {
-            Optional<Member> theMember = memberService.findOne(member.getName());
+            Optional<Member> theMember = memberService.findOne(member.getEmail());
             System.out.println("login success");
             return theMember;
         } else

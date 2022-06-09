@@ -97,14 +97,20 @@ public class JdbcBoardRepository implements BoardRepository {
 
     @Override
     public List<Board2DTO> show2(Board2Form form) {
-        String sql = "select * from (select * from board2 order by no desc) where rownum <=? ";
+//        String sql = "select * from (select * from board2 order by no desc) where rownum <=? ";
+        String sql = "SELECT * FROM \n" +
+                "   (SELECT no,title,content,createDate,ReadCount,writer," +
+                " ROW_NUMBER() OVER (ORDER BY no desc) R FROM board2)\n" +
+                "   WHERE R BETWEEN ? and ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1,form.getPage());
+            pstmt.setInt(1,form.getPage()-9);
+            pstmt.setInt(2,form.getPage());
+            System.out.println("페이지 번호:"+form.getPage());
             rs = pstmt.executeQuery();
             List<Board2DTO> board2DTOs = new ArrayList<>();
             while (rs.next()) {

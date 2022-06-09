@@ -10,11 +10,13 @@ public interface MemberRepsitory {
 
     Optional<Member> findById(Integer id);
 
-    Optional<Member> findByName(String name);
+    Optional<Member> findByName(String memberName);
+    Optional<Member> findByEmail(String email);
 
     Optional<Member> findByKakao(long name);
 
     List<Member> findAll();
 
     boolean deleteByName(String memberName);
+
 }

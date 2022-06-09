@@ -24,7 +24,12 @@ public class MemoryMemberRepository implements MemberRepsitory {
     }
 
     @Override
-    public Optional<Member> findByName(String name) {
+    public Optional<Member> findByName(String memberName) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Member> findByEmail(String name) {
         return store.values().stream()
                 .filter(member -> member.getName().equals(name))
                 .findAny();
