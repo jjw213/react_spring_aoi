@@ -8,6 +8,8 @@ import java.util.Optional;
 public interface MemberRepsitory {
     Member save(Member member);
 
+    void saveCode(String str, String userName);
+
     Optional<Member> findById(Integer id);
 
     Optional<Member> findByName(String memberName);
@@ -19,4 +21,5 @@ public interface MemberRepsitory {
 
     boolean deleteByName(String memberName);
 
+    boolean update(String memberName);
 }

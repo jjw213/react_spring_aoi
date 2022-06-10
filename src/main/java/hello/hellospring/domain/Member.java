@@ -2,6 +2,15 @@ package hello.hellospring.domain;
 
 public class Member {
     private int id;
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public String getEmail() {
         return email;

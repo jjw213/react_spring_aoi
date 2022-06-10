@@ -132,6 +132,17 @@ public class MemberContrroller {
 //        memberService.join(member);
 //        return "/";
 //    }
+    @PostMapping("/members/codeCheck")
+    public @ResponseBody
+    Optional<Member> codeCheck(String code, String name) {
+        Optional<Member> member = memberService.findOneName(name);
+        System.out.println(member.get().getCode());
+        if(memberService.codeCheck(code, member.get().getCode(), member.get().getName())){
+            return memberService.findOneName(name);
+        }
+        else return Optional.empty();
+    }
+
     @PostMapping("/members/sendEmail")
     public @ResponseBody
     void sendEmail(String userEmail, String name) {

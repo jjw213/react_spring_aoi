@@ -1,10 +1,7 @@
 package hello.hellospring;
 
 import hello.hellospring.repository.*;
-import hello.hellospring.service.BoardService;
-import hello.hellospring.service.DibsService;
-import hello.hellospring.service.MemberService;
-import hello.hellospring.service.ReplyService;
+import hello.hellospring.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -59,4 +56,6 @@ public class SpringConfig {
         return new JdbcReplyRepository(dataSource);
     }
 
+    @Bean
+    public SendEmailService sendEmailService(){return new SendEmailService(memberRepository());}
 }

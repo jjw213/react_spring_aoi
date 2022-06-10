@@ -1,11 +1,9 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
-import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
 public class MemoryMemberRepository implements MemberRepsitory {
     private static Map<Integer, Member> store = new HashMap<>();
     private static Integer sequence = 0;
@@ -16,6 +14,11 @@ public class MemoryMemberRepository implements MemberRepsitory {
         member.setId(++sequence);
         store.put(member.getId(), member);
         return member;
+    }
+
+    @Override
+    public void saveCode(String str, String userName) {
+
     }
 
     @Override
@@ -49,4 +52,10 @@ public class MemoryMemberRepository implements MemberRepsitory {
     public boolean deleteByName(String memberName) {
         return true;
     }
+
+    @Override
+    public boolean update(String member) {
+        return true;
+    }
+
 }

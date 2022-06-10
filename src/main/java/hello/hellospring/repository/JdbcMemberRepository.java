@@ -1,6 +1,7 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.domain.ReplyDTO;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
@@ -18,7 +19,7 @@ public class JdbcMemberRepository implements MemberRepsitory {
 
     @Override
     public Member save(Member member) {
-        String sql = "insert into member2 values(mem_seq.nextval,?,?,?,?)";
+        String sql = "insert into member2 values(mem_seq.nextval,?,?,?,?,null)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -42,6 +43,25 @@ public class JdbcMemberRepository implements MemberRepsitory {
 //                throw new SQLException("id 조회 실패");
 //            }
             return member;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public void saveCode(String str, String userName) {
+        String sql = "update member2 set code=? where name = ? ";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, str);
+            pstmt.setString(2, userName);
+            pstmt.executeUpdate();
         } catch (Exception e) {
             throw new IllegalStateException(e);
         } finally {
@@ -92,6 +112,7 @@ public class JdbcMemberRepository implements MemberRepsitory {
                 member.setId(rs.getInt("id"));
                 member.setName(rs.getString("name"));
                 member.setPassword(rs.getString("password"));
+                member.setCode(rs.getString("code"));
                 return Optional.of(member);
             } else {
                 return Optional.empty();
@@ -132,6 +153,25 @@ public class JdbcMemberRepository implements MemberRepsitory {
     @Override
     public boolean deleteByName(String memberName) {
         String sql = "delete from member2 where name = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, memberName);
+            pstmt.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
+
+    @Override
+    public boolean update(String memberName) {
+        String sql = "update member2 set code=null where name = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;

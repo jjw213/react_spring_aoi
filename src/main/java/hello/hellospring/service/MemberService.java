@@ -83,4 +83,16 @@ public class MemberService {
     public boolean deleteMember(String memberName){
         return memberRepsitory.deleteByName(memberName);
     }
+
+    public boolean codeCheck(String code, String DBCode, String memberName) {
+        if(code.equals(DBCode))
+        {
+            System.out.println("membername"+memberName);
+            return memberRepsitory.update(memberName);
+        }
+        else
+            return false;
+    }
+
+
 }
