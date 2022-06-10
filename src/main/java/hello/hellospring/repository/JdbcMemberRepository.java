@@ -205,6 +205,7 @@ public class JdbcMemberRepository implements MemberRepsitory {
                 member.setName(rs.getString("name"));
                 member.setPassword(rs.getString("password"));
                 member.setEmail(rs.getString("email"));
+                member.setCode(rs.getString("code"));
                 return Optional.of(member);
             }
             return Optional.empty();
