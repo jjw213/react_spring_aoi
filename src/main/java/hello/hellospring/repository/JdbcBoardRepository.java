@@ -108,9 +108,8 @@ public class JdbcBoardRepository implements BoardRepository {
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1,form.getPage()-9);
-            pstmt.setInt(2,form.getPage());
-            System.out.println("페이지 번호:"+form.getPage());
+            pstmt.setInt(1, form.getPage() - 9);
+            pstmt.setInt(2, form.getPage());
             rs = pstmt.executeQuery();
             List<Board2DTO> board2DTOs = new ArrayList<>();
             while (rs.next()) {
@@ -143,7 +142,7 @@ public class JdbcBoardRepository implements BoardRepository {
             pstmt.setLong(1, no);
             rs = pstmt.executeQuery();
             // 조회수 증가 부분
-            sql=" UPDATE BOARD2 set readCount = NVL(readCount, 0) + 1 where no=?";
+            sql = " UPDATE BOARD2 set readCount = NVL(readCount, 0) + 1 where no=?";
             pstmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             pstmt.setLong(1, no);

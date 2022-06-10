@@ -40,7 +40,7 @@ public class AnimalDibsController {
     @PostMapping("/animal/dibsList")
     @ResponseBody
     public List<Animal> dibsList(DibsForm form) {
-//        System.out.println(form.getName());
+        System.out.println("딥스 네임? " + form.getName());
         List<Animal> list = dibsService.findDibs(form.getName());
 //        System.out.println("list 입니다." + list);
         return list;

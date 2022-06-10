@@ -52,7 +52,6 @@ public class AnimalListController {
     @PostMapping("/animal/animalList")
     @ResponseBody
     public List<Animal> alist(AnimalForm form) {
-        System.out.println(form.getNumOfRows());
         List<Animal> result = new ArrayList<>();
         String file = "";
         if (form.getKindcd().equals("개")) {
@@ -95,7 +94,6 @@ public class AnimalListController {
     @PostMapping("/animal/recommendList")
     @ResponseBody
     public List<Animal> recommendList(AnimalForm form) {
-        System.out.println(form.getNumOfRows());
         List<Animal> result = new ArrayList<>();
         String file = "";
         if (form.getKindcd().equals("개")) {

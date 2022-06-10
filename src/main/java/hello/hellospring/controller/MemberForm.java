@@ -15,6 +15,15 @@ public class MemberForm {
 
     private String password;
     private long kakao_id;
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public long getKakao_id() {
         return kakao_id;

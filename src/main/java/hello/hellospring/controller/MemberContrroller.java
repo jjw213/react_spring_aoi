@@ -134,19 +134,16 @@ public class MemberContrroller {
 //    }
     @PostMapping("/members/codeCheck")
     public @ResponseBody
-    Optional<Member> codeCheck(String code, String name) {
-        Optional<Member> member = memberService.findOneName(name);
-        System.out.println(member.get().getCode());
-        if(memberService.codeCheck(code, member.get().getCode(), member.get().getName())){
-            return memberService.findOneName(name);
-        }
-        else return Optional.empty();
+    Optional<Member> codeCheck(MemberForm form) {
+        Optional<Member> member = memberService.findOneName(form.getName());
+        if (memberService.codeCheck(form.getCode(), member.get().getCode(), member.get().getName())) {
+            return memberService.findOneName(form.getName());
+        } else return member;
     }
 
     @PostMapping("/members/sendEmail")
     public @ResponseBody
     void sendEmail(String userEmail, String name) {
-        System.out.println("이메일 보냄 ->" + userEmail);
         MailDTO dto = sendEmailService.createMailAndChangePassword(userEmail, name);
         sendEmailService.mailSend(dto);
 
