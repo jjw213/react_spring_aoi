@@ -124,14 +124,6 @@ public class MemberContrroller {
             return member;
     }
 
-    //    public String log(MemberForm form) {
-//        Member member = new Member();
-//        member.setName(form.getName());
-//        member.setPassword(form.getPassword());
-//        System.out.println("member = " + member.getName());
-//        memberService.join(member);
-//        return "/";
-//    }
     @PostMapping("/members/codeCheck")
     public @ResponseBody
     Optional<Member> codeCheck(MemberForm form) {
